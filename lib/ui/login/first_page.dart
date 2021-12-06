@@ -1,7 +1,11 @@
 import 'package:cookmate/theme/theme.dart';
+import 'package:cookmate/ui/login/login_page.dart';
+import 'package:cookmate/ui/login/register_page.dart';
 import 'package:flutter/material.dart';
 
 class FirstPage extends StatelessWidget {
+  static const routeName = '/first_page';
+
   const FirstPage({Key? key}) : super(key: key);
 
   @override
@@ -10,9 +14,9 @@ class FirstPage extends StatelessWidget {
       body: Stack(
         children: [
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
-                image: new AssetImage('assets/background.png'),
+                image: AssetImage('assets/background.png'),
                 fit: BoxFit.cover,
               ),
             ),
@@ -73,7 +77,9 @@ class FirstPage extends StatelessWidget {
                     fontSize: 18,
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, RegisterPage.routeName);
+                },
                 style: ButtonStyle(
                   backgroundColor:
                       MaterialStateProperty.all<Color>(orangeColor),
@@ -102,7 +108,9 @@ class FirstPage extends StatelessWidget {
                     fontSize: 18,
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, LoginPage.routeName);
+                },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(whiteColor),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
