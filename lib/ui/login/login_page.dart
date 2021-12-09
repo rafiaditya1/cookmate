@@ -1,4 +1,5 @@
 import 'package:cookmate/theme/theme.dart';
+import 'package:cookmate/ui/home/home_page.dart';
 import 'package:cookmate/ui/login/register_page.dart';
 import 'package:flutter/material.dart';
 
@@ -118,7 +119,9 @@ class LoginPage extends StatelessWidget {
                     fontSize: 18,
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, HomePage.routeName);
+                },
                 style: ButtonStyle(
                   backgroundColor:
                       MaterialStateProperty.all<Color>(orangeColor),
