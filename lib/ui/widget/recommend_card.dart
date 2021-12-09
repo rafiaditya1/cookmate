@@ -44,9 +44,10 @@ class RecommendCard extends StatelessWidget {
             ),
             Row(
               children: [
-                Icon(
-                  Icons.food_bank,
-                  size: 16,
+                Image.asset(
+                  'assets/soup_kitchen.png',
+                  height: 16,
+                  width: 16,
                 ),
                 Text(
                   ' 4 Porsi',
