@@ -16,7 +16,7 @@ class RecommendCard extends StatelessWidget {
             child: Image.asset('assets/nasgor.jpeg'),
           ),
         ),
-        SizedBox(width: 6),
+        const SizedBox(width: 6),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -27,10 +27,10 @@ class RecommendCard extends StatelessWidget {
                 fontWeight: bold,
               ),
             ),
-            SizedBox(height: 2),
+            const SizedBox(height: 2),
             Row(
               children: [
-                Icon(
+                const Icon(
                   Icons.timer,
                   size: 16,
                 ),

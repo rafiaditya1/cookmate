@@ -29,7 +29,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 25),
+              const SizedBox(height: 25),
               Text(
                 'Telusuri Resep Favorit Anda',
                 style: orangeTextStyle.copyWith(
@@ -37,7 +37,7 @@ class HomePage extends StatelessWidget {
                   fontSize: 18,
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -63,12 +63,12 @@ class HomePage extends StatelessWidget {
                   // ),
                 ],
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               Container(
                 height: 50,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
-                  children: [
+                  children: const [
                     CategoryCard(),
                     SizedBox(width: 16),
                     CategoryCard(),
@@ -80,7 +80,7 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               Text(
                 'Rekomendasi Resep',
                 style: blackTextStyle.copyWith(
@@ -88,9 +88,9 @@ class HomePage extends StatelessWidget {
                   fontSize: 13,
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               Column(
-                children: [
+                children: const [
                   RecommendCard(),
                   RecommendCard(),
                   RecommendCard(),

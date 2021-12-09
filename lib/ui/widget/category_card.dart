@@ -20,7 +20,7 @@ class CategoryCard extends StatelessWidget {
             //   height: 160,
             //   fit: BoxFit.cover,
             // ),
-            SizedBox(height: 15),
+            const SizedBox(height: 15),
             Text(
               'Masakkan Hari Raya',
               style: whiteTextStyle.copyWith(
