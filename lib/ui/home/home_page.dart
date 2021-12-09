@@ -48,24 +48,24 @@ class HomePage extends StatelessWidget {
                       fontSize: 13,
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 16),
-                    child: TextButton(
-                      child: Text(
-                        'Semua Kategori',
-                        style: orangeTextStyle.copyWith(
-                          fontWeight: light,
-                          fontSize: 11,
-                        ),
-                      ),
-                      onPressed: () {},
-                    ),
-                  ),
+                  // Padding(
+                  //   padding: const EdgeInsets.only(right: 16),
+                  //   child: TextButton(
+                  //     child: Text(
+                  //       'Semua Kategori',
+                  //       style: orangeTextStyle.copyWith(
+                  //         fontWeight: light,
+                  //         fontSize: 11,
+                  //       ),
+                  //     ),
+                  //     onPressed: () {},
+                  //   ),
+                  // ),
                 ],
               ),
               SizedBox(height: 16),
               Container(
-                height: 210,
+                height: 50,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: [
@@ -95,7 +95,7 @@ class HomePage extends StatelessWidget {
                   RecommendCard(),
                   RecommendCard(),
                   RecommendCard(),
-                  RecommendCard(), 
+                  RecommendCard(),
                 ],
               )
               // Container(

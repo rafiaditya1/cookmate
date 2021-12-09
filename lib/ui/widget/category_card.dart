@@ -11,19 +11,19 @@ class CategoryCard extends StatelessWidget {
       child: Container(
         height: 210,
         width: 138,
-        color: lightGreyColor,
+        color: orangeColor,
         child: Column(
           children: [
-            Image.asset(
-              'assets/nasgor.jpeg',
-              width: 138,
-              height: 160,
-              fit: BoxFit.cover,
-            ),
-            SizedBox(height: 11),
+            // Image.asset(
+            //   'assets/nasgor.jpeg',
+            //   width: 138,
+            //   height: 160,
+            //   fit: BoxFit.cover,
+            // ),
+            SizedBox(height: 15),
             Text(
               'Masakkan Hari Raya',
-              style: blackTextStyle.copyWith(
+              style: whiteTextStyle.copyWith(
                 fontSize: 10,
                 fontWeight: bold,
               ),
