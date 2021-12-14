@@ -1,4 +1,5 @@
 import 'package:cookmate/ui/detail/category_detail.dart';
+import 'package:cookmate/ui/detail/recipe_detail.dart';
 import 'package:cookmate/ui/home/home_page.dart';
 import 'package:cookmate/ui/login/first_page.dart';
 import 'package:cookmate/ui/login/login_page.dart';
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
         LoginPage.routeName: (context) => const LoginPage(),
         HomePage.routeName: (context) => const HomePage(),
         CategoryDetail.routeName: (context) => const CategoryDetail(),
+        RecipeDetail.routeName: (context) => const RecipeDetail(),
       },
     );
   }
