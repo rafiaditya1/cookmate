@@ -1,16 +1,30 @@
+import 'package:cookmate/provider/category_list_provider.dart';
+import 'package:cookmate/provider/recommend_list_provider.dart';
 import 'package:cookmate/theme/theme.dart';
+import 'package:cookmate/ui/detail/category_detail.dart';
 import 'package:cookmate/ui/widget/category_card.dart';
 import 'package:cookmate/ui/widget/recommend_card.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   static const routeName = '/home_page';
 
   const HomePage({Key? key}) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return MultiProvider(
+        providers: [
+          ChangeNotifierProvider<CategoryListProvider>(
+            create: (_) => CategoryListProvider(context),
+          ),
+          ChangeNotifierProvider<RecommendListProvider>(
+            create: (_) => RecommendListProvider(context)
+          )
+        ],
+      child : Scaffold(
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(left: 16),
@@ -48,38 +62,57 @@ class HomePage extends StatelessWidget {
                       fontSize: 13,
                     ),
                   ),
-                  // Padding(
-                  //   padding: const EdgeInsets.only(right: 16),
-                  //   child: TextButton(
-                  //     child: Text(
-                  //       'Semua Kategori',
-                  //       style: orangeTextStyle.copyWith(
-                  //         fontWeight: light,
-                  //         fontSize: 11,
-                  //       ),
-                  //     ),
-                  //     onPressed: () {},
-                  //   ),
-                  // ),
                 ],
               ),
               const SizedBox(height: 16),
-              Container(
-                height: 50,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: const [
-                    CategoryCard(),
-                    SizedBox(width: 16),
-                    CategoryCard(),
-                    SizedBox(width: 16),
-                    CategoryCard(),
-                    SizedBox(width: 16),
-                    CategoryCard(),
-                    SizedBox(width: 16),
-                  ],
-                ),
-              ),
+              Consumer<CategoryListProvider>(builder: (context, state, _) {
+                if (state.state == ResultState.HasData) {
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: state.result.results.length,
+                    itemBuilder: (context, index) {
+                      final response = state.result.results[index];
+                      return CategoryCard(
+                        category: state.result.results[index],
+                        onPressed: () {
+                          Navigator.pushNamed(
+                            context,
+                            CategoryDetail.routeName,
+                            arguments: response.key,
+                          );
+                        },
+                      );
+                    },
+                  );
+                } else if (state.state == ResultState.NoData) {
+                  return Center(
+                    child: Text(state.message),
+                  );
+                } else if (state.state == ResultState.Error) {
+                  return Center(
+                    child: Text(state.message),
+                  );
+                } else if (state.state == ResultState.NoConnection) {
+                  return Container(
+                    width: MediaQuery.of(context).size.width,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          state.message,
+                          style: TextStyle(fontSize: 20, color: Colors.blueGrey),
+                        ),
+                        SizedBox(height: 25),
+                      ],
+                    ),
+                  );
+                } else {
+                  return Center(
+                    child: Text(''),
+                  );
+                }
+              }),
               const SizedBox(height: 30),
               Text(
                 'Rekomendasi Resep',
@@ -89,7 +122,50 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16),
-              Column(
+              Consumer<RecommendListProvider>(builder: (context, state, _) {
+                if (state.state == ResultStateRecommend.HasData) {
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: state.result.results.length,
+                    itemBuilder: (context, index) {
+                      return RecommendCard(
+                        title: state.result.results[index],
+                        thumb: state.result.results[index],
+                        times: state.result.results[index],
+                        portion: state.result.results[index],
+                      );
+                    },
+                  );
+                } else if (state.state == ResultStateRecommend.NoData) {
+                  return Center(
+                    child: Text(state.message),
+                  );
+                } else if (state.state == ResultStateRecommend.Error) {
+                  return Center(
+                    child: Text(state.message),
+                  );
+                } else if (state.state == ResultStateRecommend.NoConnection) {
+                  return Container(
+                    width: MediaQuery.of(context).size.width,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          state.message,
+                          style: TextStyle(fontSize: 20, color: Colors.blueGrey),
+                        ),
+                        SizedBox(height: 25),
+                      ],
+                    ),
+                  );
+                } else {
+                  return Center(
+                    child: Text(''),
+                  );
+                }
+              }),
+              /*Column(
                 children: const [
                   RecommendCard(),
                   RecommendCard(),
@@ -97,7 +173,7 @@ class HomePage extends StatelessWidget {
                   RecommendCard(),
                   RecommendCard(),
                 ],
-              )
+              )*/
               // Container(
               //   height: 200,
               //   child: ListView(
@@ -124,6 +200,7 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
+    ),
     );
   }
 }

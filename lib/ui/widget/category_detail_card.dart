@@ -1,9 +1,17 @@
+import 'package:cookmate/data/model/detail_category.dart';
 import 'package:cookmate/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 class CategoryDetailCard extends StatelessWidget {
-  const CategoryDetailCard({Key? key}) : super(key: key);
+  final Result title, thumb, times, portion;
 
+  const CategoryDetailCard(
+      {
+        required this.title,
+        required this.thumb,
+        required this.times,
+        required this.portion
+      });
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,11 +24,9 @@ class CategoryDetailCard extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(18),
-              child: Image.asset(
-                'assets/nasgor.jpeg',
-                width: 125,
-                height: 125,
-                fit: BoxFit.cover,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(30),
+                child: Image.network(thumb.thumb),
               ),
             ),
             SizedBox(width: 18),
@@ -28,7 +34,7 @@ class CategoryDetailCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Resep Ayam Bacem Khas \nYogyakarta, Menu Sehari-Hari \nyang Nikmat',
+                  title.title,
                   style: blackTextStyle.copyWith(
                     fontSize: 13,
                     fontWeight: bold,
@@ -41,7 +47,7 @@ class CategoryDetailCard extends StatelessWidget {
                       size: 16,
                     ),
                     Text(
-                      ' 1 Jam',
+                      times.times,
                       style: orangeTextStyle.copyWith(
                         fontSize: 12,
                       ),
@@ -56,7 +62,7 @@ class CategoryDetailCard extends StatelessWidget {
                       width: 16,
                     ),
                     Text(
-                      ' 4 Porsi',
+                      portion.portion,
                       style: orangeTextStyle.copyWith(
                         fontSize: 12,
                       ),
