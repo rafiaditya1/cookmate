@@ -1,7 +1,5 @@
-
 import 'dart:async';
 import 'dart:convert';
-
 
 import 'package:cookmate/data/api/connection_service.dart';
 import 'package:cookmate/data/model/detail_category.dart';

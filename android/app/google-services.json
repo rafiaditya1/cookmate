@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "834655213041",
+    "project_id": "cookmate-72852",
+    "storage_bucket": "cookmate-72852.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:834655213041:android:7186007d00727ecea72050",
+        "android_client_info": {
+          "package_name": "com.example.cookmate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "834655213041-frnv9e5a9q4cdapv2tqtkgaur5mbk3l2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXRndoabJgC_s-zxTZ89_pg8xYSchSeiA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "834655213041-frnv9e5a9q4cdapv2tqtkgaur5mbk3l2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
