@@ -5,11 +5,14 @@ import 'package:flutter/material.dart';
 class RecommendCard extends StatelessWidget {
   final Result title, thumb, times, portion;
 
+  final Function() onPressed;
+
   const RecommendCard(
       {required this.title,
       required this.thumb,
       required this.times,
-      required this.portion});
+      required this.onPressed,
+      required this.portion,});
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +20,9 @@ class RecommendCard extends StatelessWidget {
       children: [
         Expanded(
           flex: 1,
+          child: InkWell(
+            onTap: onPressed,
+            borderRadius: BorderRadius.circular(15.0),
           child: Container(
             width: 120,
             height: 110,
@@ -25,6 +31,7 @@ class RecommendCard extends StatelessWidget {
               child: Image.network(thumb.thumb),
             ),
           ),
+        ),
         ),
         const SizedBox(width: 6),
         Expanded(
