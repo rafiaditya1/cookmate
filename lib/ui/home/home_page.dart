@@ -2,15 +2,24 @@ import 'package:cookmate/provider/category_list_provider.dart';
 import 'package:cookmate/provider/recommend_list_provider.dart';
 import 'package:cookmate/theme/theme.dart';
 import 'package:cookmate/ui/detail/category_detail.dart';
+import 'package:cookmate/ui/favorite/favorite_page.dart';
+import 'package:cookmate/ui/search/search_page.dart';
 import 'package:cookmate/ui/widget/category_card.dart';
 import 'package:cookmate/ui/widget/recommend_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   static const routeName = '/home_page';
 
   const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -204,6 +213,31 @@ class HomePage extends StatelessWidget {
             ),
           ),
         ),
+        // bottomNavigationBar: BottomNavigationBar(
+        //   currentIndex: _currentIndex,
+        //   items: [
+        //     BottomNavigationBarItem(
+        //       icon: Icon(Icons.home),
+        //       label: 'Home',
+        //       backgroundColor: orangeColor,
+        //     ),
+        //     BottomNavigationBarItem(
+        //       icon: Icon(Icons.search),
+        //       label: 'Search',
+        //       backgroundColor: orangeColor,
+        //     ),
+        //     BottomNavigationBarItem(
+        //       icon: Icon(Icons.favorite_border_rounded),
+        //       label: 'Favorite',
+        //       backgroundColor: orangeColor,
+        //     ),
+        //   ],
+        //   onTap: (index) {
+        //     setState(() {
+        //       _currentIndex = index;
+        //     });
+        //   },
+        // ),
       ),
     );
   }

@@ -1,6 +1,8 @@
+import 'package:cookmate/theme/theme.dart';
 import 'package:cookmate/ui/detail/category_detail.dart';
 import 'package:cookmate/ui/detail/recipe_detail.dart';
 import 'package:cookmate/ui/home/home_page.dart';
+import 'package:cookmate/ui/home/main_screen.dart';
 import 'package:cookmate/ui/login/first_page.dart';
 import 'package:cookmate/ui/login/login_page.dart';
 import 'package:cookmate/ui/login/register_page.dart';
@@ -16,6 +18,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        primaryColor: orangeColor,
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          selectedItemColor: orangeColor,
+          unselectedItemColor: greyColor,
+        ),
+      ),
       debugShowCheckedModeBanner: false,
       initialRoute: FirstPage.routeName,
       routes: {
@@ -25,6 +34,7 @@ class MyApp extends StatelessWidget {
         HomePage.routeName: (context) => const HomePage(),
         CategoryDetail.routeName: (context) => const CategoryDetail(),
         RecipeDetail.routeName: (context) => const RecipeDetail(),
+        MainScreen.routeName: (context) => MainScreen(),
       },
     );
   }
