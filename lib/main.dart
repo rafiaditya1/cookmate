@@ -24,9 +24,8 @@ class MyApp extends StatelessWidget {
         RegisterPage.routeName: (context) => const RegisterPage(),
         LoginPage.routeName: (context) => const LoginPage(),
         HomePage.routeName: (context) => const HomePage(),
-        CategoryDetail.routeName: (context) => const CategoryDetail(),
-        RecipeDetail.routeName: (context) => const RecipeDetail(),
-        MainScreen.routeName: (context) => MainScreen(),
+        CategoryDetail.routeName: (context) => CategoryDetail(id: ModalRoute.of(context)?.settings.arguments as String,),
+        RecipeDetail.routeName: (context) => RecipeDetail(id: ModalRoute.of(context)?.settings.arguments as String,),
       },
     );
   }
