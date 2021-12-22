@@ -4,9 +4,11 @@
 
 import 'dart:convert';
 
-RecipeDetailResult recipeDetailResultFromJson(String str) => RecipeDetailResult.fromJson(json.decode(str));
+RecipeDetailResult recipeDetailResultFromJson(String str) =>
+    RecipeDetailResult.fromJson(json.decode(str));
 
-String recipeDetailResultToJson(RecipeDetailResult data) => json.encode(data.toJson());
+String recipeDetailResultToJson(RecipeDetailResult data) =>
+    json.encode(data.toJson());
 
 class RecipeDetailResult {
   RecipeDetailResult({
@@ -19,17 +21,18 @@ class RecipeDetailResult {
   final bool status;
   final Results results;
 
-  factory RecipeDetailResult.fromJson(Map<String, dynamic> json) => RecipeDetailResult(
-    method: json["method"],
-    status: json["status"],
-    results: Results.fromJson(json["results"]),
-  );
+  factory RecipeDetailResult.fromJson(Map<String, dynamic> json) =>
+      RecipeDetailResult(
+        method: json["method"],
+        status: json["status"],
+        results: Results.fromJson(json["results"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "method": method,
-    "status": status,
-    "results": results.toJson(),
-  };
+        "method": method,
+        "status": status,
+        "results": results.toJson(),
+      };
 }
 
 class Results {
@@ -56,30 +59,31 @@ class Results {
   final List<String> step;
 
   factory Results.fromJson(Map<String, dynamic> json) => Results(
-    title: json["title"],
-    thumb: json["thumb"],
-    servings: json["servings"],
-    times: json["times"],
-    dificulty: json["dificulty"],
-    desc: json["desc"],
-    needItem: List<NeedItem>.from(json["needItem"].map((x) => NeedItem.fromJson(x))),
-    ingredient: List<String>.from(json["ingredient"].map((x) => x)),
-    step: List<String>.from(json["step"].map((x) => x)),
-  );
+        title: json["title"],
+        thumb: json["thumb"] ??
+            'https://socialistmodernism.com/wp-content/uploads/2017/07/placeholder-image.png?w=640',
+        servings: json["servings"],
+        times: json["times"],
+        dificulty: json["dificulty"],
+        desc: json["desc"],
+        needItem: List<NeedItem>.from(
+            json["needItem"].map((x) => NeedItem.fromJson(x))),
+        ingredient: List<String>.from(json["ingredient"].map((x) => x)),
+        step: List<String>.from(json["step"].map((x) => x)),
+      );
 
   Map<String, dynamic> toJson() => {
-    "title": title,
-    "thumb": thumb,
-    "servings": servings,
-    "times": times,
-    "dificulty": dificulty,
-    "desc": desc,
-    "needItem": List<dynamic>.from(needItem.map((x) => x.toJson())),
-    "ingredient": List<dynamic>.from(ingredient.map((x) => x)),
-    "step": List<dynamic>.from(step.map((x) => x)),
-  };
+        "title": title,
+        "thumb": thumb,
+        "servings": servings,
+        "times": times,
+        "dificulty": dificulty,
+        "desc": desc,
+        "needItem": List<dynamic>.from(needItem.map((x) => x.toJson())),
+        "ingredient": List<dynamic>.from(ingredient.map((x) => x)),
+        "step": List<dynamic>.from(step.map((x) => x)),
+      };
 }
-
 
 class NeedItem {
   NeedItem({
@@ -91,12 +95,12 @@ class NeedItem {
   final String thumbItem;
 
   factory NeedItem.fromJson(Map<String, dynamic> json) => NeedItem(
-    itemName: json["item_name"],
-    thumbItem: json["thumb_item"],
-  );
+        itemName: json["item_name"],
+        thumbItem: json["thumb_item"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "item_name": itemName,
-    "thumb_item": thumbItem,
-  };
+        "item_name": itemName,
+        "thumb_item": thumbItem,
+      };
 }

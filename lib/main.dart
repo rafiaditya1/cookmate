@@ -4,6 +4,7 @@ import 'package:cookmate/ui/home/home_page.dart';
 import 'package:cookmate/ui/login/first_page.dart';
 import 'package:cookmate/ui/login/login_page.dart';
 import 'package:cookmate/ui/login/register_page.dart';
+import 'package:cookmate/ui/search/search_page.dart';
 import 'package:flutter/material.dart';
 
 import 'ui/home/main_screen.dart';
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
         MainScreen.routeName: (context) => const MainScreen(
               name: '',
             ),
+        SearchPage.routeName: (context) => SearchPage(),
       },
     );
   }

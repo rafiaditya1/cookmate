@@ -33,7 +33,7 @@ class _MainScreenState extends State<MainScreen> {
 
   late List<Widget> _listWidget = [
     HomePage(name: name),
-    SearchPage(),
+    // SearchPage(),
     FavoritePage(),
   ];
 
@@ -42,9 +42,9 @@ class _MainScreenState extends State<MainScreen> {
       icon: Icon(Icons.home),
       // label: 'Home',
     ),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.search),
-    ),
+    // BottomNavigationBarItem(
+    //   icon: Icon(Icons.search),
+    // ),
     BottomNavigationBarItem(
       icon: Icon(Icons.favorite_outline_rounded),
     ),

@@ -3,6 +3,7 @@ import 'package:cookmate/provider/recommend_list_provider.dart';
 import 'package:cookmate/theme/theme.dart';
 import 'package:cookmate/ui/detail/category_detail.dart';
 import 'package:cookmate/ui/detail/recipe_detail.dart';
+import 'package:cookmate/ui/search/search_page.dart';
 import 'package:cookmate/ui/widget/category_card.dart';
 import 'package:cookmate/ui/widget/recommend_card.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +42,18 @@ class _HomePageState extends State<HomePage> {
             height: 30,
             fit: BoxFit.cover,
           ),
-          backgroundColor: whiteColor,
+          actions: [
+            IconButton(
+              onPressed: () {
+                Navigator.pushNamed(context, SearchPage.routeName);
+              },
+              icon: const Icon(
+                Icons.search,
+                color: Colors.orange,
+              ),
+            )
+          ],
+          backgroundColor: Colors.white,
         ),
         body: SafeArea(
           child: Padding(
