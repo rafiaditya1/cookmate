@@ -1,4 +1,3 @@
-
 import 'package:cookmate/data/model/detail_recipe.dart';
 import 'package:cookmate/provider/detail_recipe_provider.dart';
 import 'package:cookmate/theme/theme.dart';
@@ -9,24 +8,22 @@ import 'package:provider/provider.dart';
 class RecipeDetail extends StatefulWidget {
   static const routeName = '/recipe_detail';
   final String id;
-  const RecipeDetail({Key? key, required this.id}) : super(key:key);
+  const RecipeDetail({Key? key, required this.id}) : super(key: key);
 
   @override
-  State<RecipeDetail> createState() => _RecipeDetailState(id:id);
+  State<RecipeDetail> createState() => _RecipeDetailState(id: id);
 }
 
 class _RecipeDetailState extends State<RecipeDetail> {
-
- final String id;
- _RecipeDetailState({required this.id});
+  final String id;
+  _RecipeDetailState({required this.id});
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<DetailRecipeProvider>(
-      create: (_) => DetailRecipeProvider(context, id: id ),
+      create: (_) => DetailRecipeProvider(context, id: id),
       child: Scaffold(
-      body: Consumer<DetailRecipeProvider>(
-        builder: (context, state, _){
+        body: Consumer<DetailRecipeProvider>(builder: (context, state, _) {
           if (state.state == ResultStateDetailRecipe.Loading) {
             return Center(
               child: CircularProgressIndicator(),
@@ -132,15 +129,17 @@ class _RecipeDetailState extends State<RecipeDetail> {
                                           padding: const EdgeInsets.all(20),
                                           child: Row(
                                             mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               Column(
                                                 children: [
-                                                  Image.asset('assets/service.png'),
+                                                  Image.asset(
+                                                      'assets/service.png'),
                                                   SizedBox(height: 5),
                                                   Text(
                                                     resep.servings,
-                                                    style: whiteTextStyle.copyWith(
+                                                    style:
+                                                        whiteTextStyle.copyWith(
                                                       fontWeight: light,
                                                       fontSize: 13,
                                                     ),
@@ -156,7 +155,8 @@ class _RecipeDetailState extends State<RecipeDetail> {
                                                   SizedBox(height: 5),
                                                   Text(
                                                     resep.times,
-                                                    style: whiteTextStyle.copyWith(
+                                                    style:
+                                                        whiteTextStyle.copyWith(
                                                       fontWeight: light,
                                                       fontSize: 13,
                                                     ),
@@ -172,7 +172,8 @@ class _RecipeDetailState extends State<RecipeDetail> {
                                                   SizedBox(height: 5),
                                                   Text(
                                                     resep.servings,
-                                                    style: whiteTextStyle.copyWith(
+                                                    style:
+                                                        whiteTextStyle.copyWith(
                                                       fontWeight: light,
                                                       fontSize: 13,
                                                     ),
@@ -198,7 +199,7 @@ class _RecipeDetailState extends State<RecipeDetail> {
                                       height: 12,
                                     ),
                                     Text(
-                                     resep.desc,
+                                      resep.desc,
                                       style: blackTextStyle.copyWith(
                                         fontWeight: light,
                                         fontSize: 13,
@@ -224,14 +225,16 @@ class _RecipeDetailState extends State<RecipeDetail> {
                                         height: 220,
                                         decoration: BoxDecoration(
                                           color: whiteColor,
-                                          borderRadius: BorderRadius.circular(20),
+                                          borderRadius:
+                                              BorderRadius.circular(20),
                                           boxShadow: [
                                             BoxShadow(
-                                              color: Colors.black.withOpacity(1.0),
+                                              color:
+                                                  Colors.black.withOpacity(1.0),
                                               blurRadius: 23,
                                               spreadRadius: 5,
-                                              offset:
-                                              Offset(0, 5), // Shadow position
+                                              offset: Offset(
+                                                  0, 5), // Shadow position
                                             ),
                                           ],
                                         ),
@@ -239,15 +242,17 @@ class _RecipeDetailState extends State<RecipeDetail> {
                                           padding: const EdgeInsets.all(20),
                                           child: Row(
                                             mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
+                                                MainAxisAlignment.spaceEvenly,
                                             children: [
                                               Column(
                                                 children: [
-                                                  Image.asset('assets/bango.png'),
+                                                  Image.asset(
+                                                      'assets/bango.png'),
                                                   SizedBox(height: 5),
                                                   Text(
                                                     'Bango Kecap Manis',
-                                                    style: blackTextStyle.copyWith(
+                                                    style:
+                                                        blackTextStyle.copyWith(
                                                       fontWeight: bold,
                                                       fontSize: 12,
                                                     ),
@@ -255,8 +260,8 @@ class _RecipeDetailState extends State<RecipeDetail> {
                                                   ElevatedButton(
                                                     child: Text(
                                                       'Beli Online',
-                                                      style:
-                                                      whiteTextStyle.copyWith(
+                                                      style: whiteTextStyle
+                                                          .copyWith(
                                                         fontWeight: bold,
                                                         fontSize: 9,
                                                       ),
@@ -264,17 +269,20 @@ class _RecipeDetailState extends State<RecipeDetail> {
                                                     onPressed: () {},
                                                     style: ButtonStyle(
                                                       backgroundColor:
-                                                      MaterialStateProperty.all<
-                                                          Color>(orangeColor),
-                                                      shape:
-                                                      MaterialStateProperty.all<
-                                                          RoundedRectangleBorder>(
+                                                          MaterialStateProperty
+                                                              .all<Color>(
+                                                                  orangeColor),
+                                                      shape: MaterialStateProperty
+                                                          .all<
+                                                              RoundedRectangleBorder>(
                                                         RoundedRectangleBorder(
                                                           borderRadius:
-                                                          BorderRadius.circular(
-                                                              20.0),
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      20.0),
                                                           side: BorderSide(
-                                                              color: orangeColor),
+                                                              color:
+                                                                  orangeColor),
                                                         ),
                                                       ),
                                                     ),
@@ -283,11 +291,13 @@ class _RecipeDetailState extends State<RecipeDetail> {
                                               ),
                                               Column(
                                                 children: [
-                                                  Image.asset('assets/royco.png'),
+                                                  Image.asset(
+                                                      'assets/royco.png'),
                                                   SizedBox(height: 5),
                                                   Text(
                                                     'Royco Kaldu Ayam',
-                                                    style: blackTextStyle.copyWith(
+                                                    style:
+                                                        blackTextStyle.copyWith(
                                                       fontWeight: bold,
                                                       fontSize: 12,
                                                     ),
@@ -295,8 +305,8 @@ class _RecipeDetailState extends State<RecipeDetail> {
                                                   ElevatedButton(
                                                     child: Text(
                                                       'Beli Online',
-                                                      style:
-                                                      whiteTextStyle.copyWith(
+                                                      style: whiteTextStyle
+                                                          .copyWith(
                                                         fontWeight: bold,
                                                         fontSize: 9,
                                                       ),
@@ -304,17 +314,20 @@ class _RecipeDetailState extends State<RecipeDetail> {
                                                     onPressed: () {},
                                                     style: ButtonStyle(
                                                       backgroundColor:
-                                                      MaterialStateProperty.all<
-                                                          Color>(orangeColor),
-                                                      shape:
-                                                      MaterialStateProperty.all<
-                                                          RoundedRectangleBorder>(
+                                                          MaterialStateProperty
+                                                              .all<Color>(
+                                                                  orangeColor),
+                                                      shape: MaterialStateProperty
+                                                          .all<
+                                                              RoundedRectangleBorder>(
                                                         RoundedRectangleBorder(
                                                           borderRadius:
-                                                          BorderRadius.circular(
-                                                              20.0),
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      20.0),
                                                           side: BorderSide(
-                                                              color: orangeColor),
+                                                              color:
+                                                                  orangeColor),
                                                         ),
                                                       ),
                                                     ),
@@ -362,15 +375,13 @@ class _RecipeDetailState extends State<RecipeDetail> {
                 )
               ],
             );
-          }else {
+          } else {
             return Center(
               child: Text(''),
             );
           }
-        }
-
+        }),
       ),
-    ),
     );
   }
 }

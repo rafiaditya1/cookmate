@@ -33,7 +33,6 @@ class DetailCategoryListProvider extends ChangeNotifier {
 
   DetailCategoryResult get result => _detailCategoryResult;
 
-
   void refresh() {
     _query = query;
     _fetchRecommendData();
@@ -78,7 +77,7 @@ class DetailCategoryListProvider extends ChangeNotifier {
     if (response.statusCode == 200) {
       return DetailCategoryResult.fromJson(json.decode(response.body));
     } else {
-      throw Exception('Sorry, we are failed to load dataa');
+      throw Exception('Sorry, we are failed to load data');
     }
   }
 }

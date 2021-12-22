@@ -6,12 +6,11 @@ class CategoryDetailCard extends StatelessWidget {
   final Result title, thumb, times, portion;
   final Function() onPressed;
 
-
   const CategoryDetailCard(
       {required this.title,
       required this.thumb,
       required this.times,
-        required this.onPressed,
+      required this.onPressed,
       required this.portion});
   @override
   Widget build(BuildContext context) {

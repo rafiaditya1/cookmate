@@ -8,10 +8,21 @@ import 'package:cookmate/ui/widget/recommend_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   static const routeName = '/home_page';
 
-  const HomePage({Key? key}) : super(key: key);
+  final String name;
+
+  const HomePage({Key? key, required this.name}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState(name: name);
+}
+
+class _HomePageState extends State<HomePage> {
+  int _currentIndex = 0;
+  final String name;
+  _HomePageState({required this.name});
 
   @override
   Widget build(BuildContext context) {
@@ -24,25 +35,34 @@ class HomePage extends StatelessWidget {
             create: (_) => RecommendListProvider(context))
       ],
       child: Scaffold(
+        appBar: AppBar(
+          title: Image.asset(
+            'assets/logo_cookmate_01.png',
+            height: 30,
+            fit: BoxFit.cover,
+          ),
+          backgroundColor: whiteColor,
+        ),
         body: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.only(left: 16),
+            padding: const EdgeInsets.only(left: 16, top: 30),
             child: ListView(
               // crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Image.asset('assets/account_circle.png'),
+                    // Image.asset('assets/account_circle.png'),
                     Text(
-                      'Halo, \nRafi Aditya Seno Aji',
+                      'Halo, \n${name}',
                       style: blackTextStyle.copyWith(
                         fontWeight: FontWeight.bold,
-                        fontSize: 12,
+                        fontSize: 16,
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 25),
+                const SizedBox(height: 10),
                 Text(
                   'Telusuri Resep Favorit Anda',
                   style: orangeTextStyle.copyWith(
@@ -57,7 +77,7 @@ class HomePage extends StatelessWidget {
                     Text(
                       'Kategori',
                       style: blackTextStyle.copyWith(
-                        fontWeight: medium,
+                        fontWeight: semiBold,
                         fontSize: 13,
                       ),
                     ),
@@ -121,7 +141,7 @@ class HomePage extends StatelessWidget {
                 Text(
                   'Rekomendasi Resep',
                   style: blackTextStyle.copyWith(
-                    fontWeight: medium,
+                    fontWeight: semiBold,
                     fontSize: 13,
                   ),
                 ),
@@ -129,6 +149,7 @@ class HomePage extends StatelessWidget {
                 Consumer<RecommendListProvider>(builder: (context, state, _) {
                   if (state.state == ResultStateRecommend.HasData) {
                     return ListView.builder(
+                      // scrollDirection: Axis.vertical,
                       shrinkWrap: true,
                       itemCount: state.result.results.length,
                       itemBuilder: (context, index) {
