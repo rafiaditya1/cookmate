@@ -10,24 +10,29 @@ import 'home_page.dart';
 class MainScreen extends StatefulWidget {
   static const routeName = '/main_screen';
 
-  const MainScreen({Key? key}) : super(key: key);
+  final String name;
+
+  const MainScreen({Key? key, required this.name}) : super(key: key);
 
   @override
-  _MainScreenState createState() => _MainScreenState();
+  _MainScreenState createState() => _MainScreenState(name: name);
 }
 
 class _MainScreenState extends State<MainScreen> {
   int _bottomNavIndex = 0;
   // int _currentIndex = 0;
 
+  late final String name;
+
+  _MainScreenState({required this.name});
   // final tabs = [
   //   HomePage(),
   //   SearchPage(),
   //   FavoritePage(),
   // ];
 
-  List<Widget> _listWidget = [
-    HomePage(),
+  late List<Widget> _listWidget = [
+    HomePage(name: name),
     SearchPage(),
     FavoritePage(),
   ];
@@ -35,15 +40,13 @@ class _MainScreenState extends State<MainScreen> {
   List<BottomNavigationBarItem> _bottomNavBarItems = [
     BottomNavigationBarItem(
       icon: Icon(Icons.home),
-      label: 'Home',
+      // label: 'Home',
     ),
     BottomNavigationBarItem(
       icon: Icon(Icons.search),
-      label: 'Search',
     ),
     BottomNavigationBarItem(
       icon: Icon(Icons.favorite_outline_rounded),
-      label: 'Favorite',
     ),
   ];
 

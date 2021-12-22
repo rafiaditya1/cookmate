@@ -22,6 +22,15 @@ class FirstPage extends StatelessWidget {
             ),
           ),
           Positioned(
+            top: 100,
+            left: 33,
+            child: Image.asset(
+              'assets/logo_cookmate_01.png',
+              height: 40,
+              fit: BoxFit.cover,
+            ),
+          ),
+          Positioned(
             bottom: 230,
             left: 33,
             child: Column(
@@ -71,14 +80,14 @@ class FirstPage extends StatelessWidget {
               height: 39,
               child: ElevatedButton(
                 child: Text(
-                  'Daftar',
+                  'Selanjutnya',
                   style: whiteTextStyle.copyWith(
                     fontWeight: bold,
                     fontSize: 18,
                   ),
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(context, RegisterPage.routeName);
+                  Navigator.pushReplacementNamed(context, LoginPage.routeName);
                 },
                 style: ButtonStyle(
                   backgroundColor:
@@ -93,35 +102,35 @@ class FirstPage extends StatelessWidget {
               ),
             ),
           ),
-          Positioned(
-            bottom: 40,
-            left: 34,
-            right: 29,
-            child: SizedBox(
-              width: 297,
-              height: 39,
-              child: ElevatedButton(
-                child: Text(
-                  'Masuk',
-                  style: orangeTextStyle.copyWith(
-                    fontWeight: bold,
-                    fontSize: 18,
-                  ),
-                ),
-                onPressed: () {
-                  Navigator.pushNamed(context, LoginPage.routeName);
-                },
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(whiteColor),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(33.0),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          )
+          // Positioned(
+          //   bottom: 40,
+          //   left: 34,
+          //   right: 29,
+          //   child: SizedBox(
+          //     width: 297,
+          //     height: 39,
+          //     child: ElevatedButton(
+          //       child: Text(
+          //         'Masuk',
+          //         style: orangeTextStyle.copyWith(
+          //           fontWeight: bold,
+          //           fontSize: 18,
+          //         ),
+          //       ),
+          //       onPressed: () {
+          //         Navigator.pushNamed(context, LoginPage.routeName);
+          //       },
+          //       style: ButtonStyle(
+          //         backgroundColor: MaterialStateProperty.all<Color>(whiteColor),
+          //         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          //           RoundedRectangleBorder(
+          //             borderRadius: BorderRadius.circular(33.0),
+          //           ),
+          //         ),
+          //       ),
+          //     ),
+          //   ),
+          // )
         ],
       ),
     );
