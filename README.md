@@ -29,8 +29,8 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/bagasrmdhn"><img src="https://avatars.githubusercontent.com/u/56336128?v=4" width="100px;" alt=""/><br /><sub><b>Moch Bagas Ramadhani</b></sub></a><br /><a href="https://github.com/MochArisandiJayanto/Flarax/commits?author=phanatagama" title="Code">💻</a> <a href="#infra-bagasrmdhn" title="Infrastructure (Databases, Build-Tools, etc)">🎨</a></td>
- 
+    <td align="center"><a href="https://github.com/bagasrmdhn"><img src="https://avatars.githubusercontent.com/u/56336128?v=4" width="100px;" alt=""/><br /><sub><b>Moch Bagas Ramadhani</b></sub></a><br /><a href="https://github.com/rafiaditya1/cookmate/commits?author=bagasrmdhn" title="Code">💻</a> <a href="#infra-bagasrmdhn" title="Infrastructure (API, Design, etc)">🎨</a></td>
+ <td align="center"><a href="https://github.com/rafiaditya1"><img src="https://avatars.githubusercontent.com/u/80164715?v=4" width="100px;" alt=""/><br /><sub><b>Rafi Aditya Seno Aji </b></sub></a><br /><a href="https://github.com/rafiaditya1/cookmate/commits?author=rafiaditya1" title="Code">💻</a> <a href="#infra-rafiaditya1" title="Infrastructure (UI, Design, Backend etc)">🎨</a></td>
    
   </tr>
 </table>
