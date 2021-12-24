@@ -37,7 +37,7 @@ class CategoryDetail extends StatelessWidget {
           // height: 125,
           child: Consumer<DetailCategoryListProvider>(
               builder: (context, state, _) {
-            if (state.state == ResultStateDetailCategory.HasData) {
+            if (state.state == ResultStateDetailCategory.hasData) {
               return ListView.builder(
                 shrinkWrap: true,
                 itemCount: state.result.results.length,
@@ -58,16 +58,16 @@ class CategoryDetail extends StatelessWidget {
                   );
                 },
               );
-            } else if (state.state == ResultStateDetailCategory.NoData) {
+            } else if (state.state == ResultStateDetailCategory.noData) {
               return Center(
                 child: Text(state.message),
               );
-            } else if (state.state == ResultStateDetailCategory.Error) {
+            } else if (state.state == ResultStateDetailCategory.error) {
               return Center(
                 child: Text(state.message),
               );
-            } else if (state.state == ResultStateDetailCategory.NoConnection) {
-              return Container(
+            } else if (state.state == ResultStateDetailCategory.noConnection) {
+              return SizedBox(
                 width: MediaQuery.of(context).size.width,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -75,9 +75,10 @@ class CategoryDetail extends StatelessWidget {
                   children: [
                     Text(
                       state.message,
-                      style: TextStyle(fontSize: 20, color: Colors.blueGrey),
+                      style:
+                          const TextStyle(fontSize: 20, color: Colors.blueGrey),
                     ),
-                    SizedBox(height: 25),
+                    const SizedBox(height: 25),
                   ],
                 ),
               );

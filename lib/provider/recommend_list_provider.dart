@@ -8,7 +8,7 @@ import 'package:cookmate/data/api/api_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
-enum ResultStateRecommend { Loading, NoData, HasData, Error, NoConnection }
+enum ResultStateRecommend { loading, noData, hasData, error, noConnection }
 
 class RecommendListProvider extends ChangeNotifier {
   late final BuildContext context;
@@ -46,28 +46,28 @@ class RecommendListProvider extends ChangeNotifier {
 
   Future<dynamic> _fetchRecommendData() async {
     try {
-      _state = ResultStateRecommend.Loading;
+      _state = ResultStateRecommend.loading;
       notifyListeners();
       final connection = await connectionService.connectionService(context);
       if (!connection.connected) {
-        _state = ResultStateRecommend.NoConnection;
+        _state = ResultStateRecommend.noConnection;
         notifyListeners();
         return _message = connection.message;
       }
       final recommend = await getRecommendData();
       if (recommend.results.isEmpty) {
-        _state = ResultStateRecommend.NoData;
+        _state = ResultStateRecommend.noData;
         notifyListeners();
         return _message = 'No Data';
       } else {
-        _state = ResultStateRecommend.HasData;
+        _state = ResultStateRecommend.hasData;
         notifyListeners();
         return _recommendResult = recommend;
       }
     } catch (e) {
-      _state = ResultStateRecommend.Error;
+      _state = ResultStateRecommend.error;
       notifyListeners();
-      return _message = 'Error: $e';
+      return _message = 'error: $e';
     }
   }
 

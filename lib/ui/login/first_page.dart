@@ -1,6 +1,5 @@
 import 'package:cookmate/theme/theme.dart';
 import 'package:cookmate/ui/login/login_page.dart';
-import 'package:cookmate/ui/login/register_page.dart';
 import 'package:flutter/material.dart';
 
 class FirstPage extends StatelessWidget {
@@ -102,35 +101,6 @@ class FirstPage extends StatelessWidget {
               ),
             ),
           ),
-          // Positioned(
-          //   bottom: 40,
-          //   left: 34,
-          //   right: 29,
-          //   child: SizedBox(
-          //     width: 297,
-          //     height: 39,
-          //     child: ElevatedButton(
-          //       child: Text(
-          //         'Masuk',
-          //         style: orangeTextStyle.copyWith(
-          //           fontWeight: bold,
-          //           fontSize: 18,
-          //         ),
-          //       ),
-          //       onPressed: () {
-          //         Navigator.pushNamed(context, LoginPage.routeName);
-          //       },
-          //       style: ButtonStyle(
-          //         backgroundColor: MaterialStateProperty.all<Color>(whiteColor),
-          //         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-          //           RoundedRectangleBorder(
-          //             borderRadius: BorderRadius.circular(33.0),
-          //           ),
-          //         ),
-          //       ),
-          //     ),
-          //   ),
-          // )
         ],
       ),
     );

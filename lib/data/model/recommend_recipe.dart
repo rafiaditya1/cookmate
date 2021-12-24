@@ -4,9 +4,11 @@
 
 import 'dart:convert';
 
-RecommendResult recommendResultFromJson(String str) => RecommendResult.fromJson(json.decode(str));
+RecommendResult recommendResultFromJson(String str) =>
+    RecommendResult.fromJson(json.decode(str));
 
-String recommendResultToJson(RecommendResult data) => json.encode(data.toJson());
+String recommendResultToJson(RecommendResult data) =>
+    json.encode(data.toJson());
 
 class RecommendResult {
   RecommendResult({
@@ -19,17 +21,19 @@ class RecommendResult {
   bool status;
   List<Result> results;
 
-  factory RecommendResult.fromJson(Map<String, dynamic> json) => RecommendResult(
-    method: json["method"],
-    status: json["status"],
-    results: List<Result>.from(json["results"].map((x) => Result.fromJson(x))),
-  );
+  factory RecommendResult.fromJson(Map<String, dynamic> json) =>
+      RecommendResult(
+        method: json["method"],
+        status: json["status"],
+        results:
+            List<Result>.from(json["results"].map((x) => Result.fromJson(x))),
+      );
 
   Map<String, dynamic> toJson() => {
-    "method": method,
-    "status": status,
-    "results": List<dynamic>.from(results.map((x) => x.toJson())),
-  };
+        "method": method,
+        "status": status,
+        "results": List<dynamic>.from(results.map((x) => x.toJson())),
+      };
 }
 
 class Result {
@@ -50,30 +54,30 @@ class Result {
 /*  Dificulty dificulty;*/
 
   factory Result.fromJson(Map<String, dynamic> json) => Result(
-    title: json["title"],
-    thumb: json["thumb"],
-    key: json["key"],
-    times: json["times"],
-    portion: json["portion"],
-  /*  dificulty: dificultyValues.map[json["dificulty"]],*/
-  );
+        title: json["title"],
+        thumb: json["thumb"],
+        key: json["key"],
+        times: json["times"],
+        portion: json["portion"],
+        /*  dificulty: dificultyValues.map[json["dificulty"]],*/
+      );
 
   Map<String, dynamic> toJson() => {
-    "title": title,
-    "thumb": thumb,
-    "key": key,
-    "times": times,
-    "portion": portion,
+        "title": title,
+        "thumb": thumb,
+        "key": key,
+        "times": times,
+        "portion": portion,
 /*    "dificulty": dificultyValues.reverse[dificulty],*/
-  };
+      };
 }
 
-enum Dificulty { CUKUP_RUMIT, MUDAH, LEVEL_CHEF_PANJI }
+enum Dificulty { cukupRumit, mudah, levelChefPanji }
 
 final dificultyValues = EnumValues({
-  "Cukup Rumit": Dificulty.CUKUP_RUMIT,
-  "Level Chef Panji": Dificulty.LEVEL_CHEF_PANJI,
-  "Mudah": Dificulty.MUDAH
+  "Cukup Rumit": Dificulty.cukupRumit,
+  "Level Chef Panji": Dificulty.levelChefPanji,
+  "Mudah": Dificulty.mudah
 });
 
 class EnumValues<T> {

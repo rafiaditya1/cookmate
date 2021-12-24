@@ -70,12 +70,12 @@ class Result {
       };
 }
 
-enum Difficulty { CUKUP_RUMIT, MUDAH, LEVEL_CHEF_PANJI }
+enum Difficulty { cukupRumit, mudah, levelChefPanji }
 
 final difficultyValues = EnumValues({
-  "Cukup Rumit": Difficulty.CUKUP_RUMIT,
-  "Level Chef Panji": Difficulty.LEVEL_CHEF_PANJI,
-  "Mudah": Difficulty.MUDAH
+  "Cukup Rumit": Difficulty.cukupRumit,
+  "Level Chef Panji": Difficulty.levelChefPanji,
+  "Mudah": Difficulty.mudah
 });
 
 class EnumValues<T> {
@@ -85,9 +85,7 @@ class EnumValues<T> {
   EnumValues(this.map);
 
   Map<T, String> get reverse {
-    if (reverseMap == null) {
-      reverseMap = map.map((k, v) => new MapEntry(v, k));
-    }
+    reverseMap;
     return reverseMap;
   }
 }

@@ -1,7 +1,5 @@
 import 'package:cookmate/theme/theme.dart';
-import 'package:cookmate/ui/home/home_page.dart';
 import 'package:cookmate/ui/home/main_screen.dart';
-import 'package:cookmate/ui/login/register_page.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -24,7 +22,7 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: 150),
+            const SizedBox(height: 150),
             Image.asset(
               'assets/logo_cookmate_01.png',
               height: 40,
@@ -37,48 +35,7 @@ class _LoginPageState extends State<LoginPage> {
                 fontSize: 20,
               ),
             ),
-            const SizedBox(height: 25),
-            // Padding(
-            //   padding: const EdgeInsets.only(left: 30),
-            //   child: Column(
-            //     crossAxisAlignment: CrossAxisAlignment.start,
-            //     children: [
-            //       Text(
-            //         'E-mail',
-            //         style: orangeTextStyle.copyWith(
-            //           fontSize: 16,
-            //           fontWeight: semiBold,
-            //         ),
-            //       ),
-            //       const SizedBox(height: 5),
-            //       Container(
-            //         alignment: Alignment.center,
-            //         width: 320,
-            //         height: 40,
-            //         decoration: BoxDecoration(
-            //           borderRadius: BorderRadius.circular(60),
-            //           border: Border.all(
-            //             width: 1,
-            //             color: greyColor,
-            //             style: BorderStyle.solid,
-            //           ),
-            //         ),
-            //         child: TextField(
-            //           decoration: InputDecoration(
-            //               hintText: 'Masukkan e-mail anda',
-            //               hintStyle: greyTextStyle.copyWith(
-            //                 fontWeight: light,
-            //                 fontSize: 12,
-            //               ),
-            //               contentPadding: const EdgeInsets.symmetric(
-            //                   horizontal: 15, vertical: 14),
-            //               border: InputBorder.none),
-            //         ),
-            //       )
-            //     ],
-            //   ),
-            // ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 40),
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -117,7 +74,7 @@ class _LoginPageState extends State<LoginPage> {
                 )
               ],
             ),
-            const SizedBox(height: 50),
+            const SizedBox(height: 20),
             Center(
               child: SizedBox(
                 width: 187,
@@ -143,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
                         );
                       }));
                     } else {
-                      return null;
+                      return;
                     }
                   },
                   style: ButtonStyle(
@@ -159,10 +116,6 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-            // const SizedBox(height: 18),
-            // const Center(
-            //   child: Text('Sudah memiliki akun? klik di sini'),
-            // ),
           ],
         ),
       ),

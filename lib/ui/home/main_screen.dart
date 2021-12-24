@@ -1,6 +1,5 @@
 import 'package:cookmate/theme/theme.dart';
 import 'package:cookmate/ui/favorite/favorite_page.dart';
-import 'package:cookmate/ui/search/search_page.dart';
 import 'package:cookmate/ui/widget/platform_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -20,32 +19,26 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int _bottomNavIndex = 0;
-  // int _currentIndex = 0;
 
   late final String name;
 
   _MainScreenState({required this.name});
-  // final tabs = [
-  //   HomePage(),
-  //   SearchPage(),
-  //   FavoritePage(),
-  // ];
 
-  late List<Widget> _listWidget = [
+  late final List<Widget> _listWidget = [
     HomePage(name: name),
     // SearchPage(),
-    FavoritePage(),
+    const FavoritePage(),
   ];
 
-  List<BottomNavigationBarItem> _bottomNavBarItems = [
-    BottomNavigationBarItem(
+  final List<BottomNavigationBarItem> _bottomNavBarItems = [
+    const BottomNavigationBarItem(
       icon: Icon(Icons.home),
       label: '',
     ),
     // BottomNavigationBarItem(
     //   icon: Icon(Icons.search),
     // ),
-    BottomNavigationBarItem(
+    const BottomNavigationBarItem(
       icon: Icon(Icons.favorite_outline_rounded),
       label: '',
     ),

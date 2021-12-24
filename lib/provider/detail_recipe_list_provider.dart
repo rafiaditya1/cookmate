@@ -8,7 +8,7 @@ import 'package:cookmate/data/api/api_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
-enum ResultStateDetailCategory { Loading, NoData, HasData, Error, NoConnection }
+enum ResultStateDetailCategory { loading, noData, hasData, error, noConnection }
 
 class DetailCategoryListProvider extends ChangeNotifier {
   late final BuildContext context;
@@ -46,28 +46,28 @@ class DetailCategoryListProvider extends ChangeNotifier {
 
   Future<dynamic> _fetchRecommendData() async {
     try {
-      _state = ResultStateDetailCategory.Loading;
+      _state = ResultStateDetailCategory.loading;
       notifyListeners();
       final connection = await connectionService.connectionService(context);
       if (!connection.connected) {
-        _state = ResultStateDetailCategory.NoConnection;
+        _state = ResultStateDetailCategory.noConnection;
         notifyListeners();
         return _message = connection.message;
       }
       final detailCategory = await getDetailCategoryData();
       if (detailCategory.results.isEmpty) {
-        _state = ResultStateDetailCategory.NoData;
+        _state = ResultStateDetailCategory.noData;
         notifyListeners();
         return _message = 'No Data';
       } else {
-        _state = ResultStateDetailCategory.HasData;
+        _state = ResultStateDetailCategory.hasData;
         notifyListeners();
         return _detailCategoryResult = detailCategory;
       }
     } catch (e) {
-      _state = ResultStateDetailCategory.Error;
+      _state = ResultStateDetailCategory.error;
       notifyListeners();
-      return _message = 'Error: $e';
+      return _message = 'error: $e';
     }
   }
 

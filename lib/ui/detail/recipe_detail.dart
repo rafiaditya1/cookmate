@@ -3,6 +3,7 @@ import 'package:cookmate/provider/detail_recipe_provider.dart';
 import 'package:cookmate/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class RecipeDetail extends StatefulWidget {
   static const routeName = '/recipe_detail';
@@ -16,18 +17,31 @@ class RecipeDetail extends StatefulWidget {
 class _RecipeDetailState extends State<RecipeDetail> {
   final String id;
   _RecipeDetailState({required this.id});
+  final String _url = 'https://tokopedia.link/7wIq5aS7emb';
 
   @override
   Widget build(BuildContext context) {
+    // launchUrl(String url) async {
+    //   if (await canLaunch(url)) {
+    //     launch(url);
+    //   } else {
+    //     throw (url);
+    //   }
+    // }
+
+    void _launchURL() async {
+      if (!await launch(_url)) throw 'Could not launch $_url';
+    }
+
     return ChangeNotifierProvider<DetailRecipeProvider>(
       create: (_) => DetailRecipeProvider(context, id: id),
       child: Scaffold(
         body: Consumer<DetailRecipeProvider>(builder: (context, state, _) {
-          if (state.state == ResultStateDetailRecipe.Loading) {
-            return Center(
+          if (state.state == ResultStateDetailRecipe.loading) {
+            return const Center(
               child: CircularProgressIndicator(),
             );
-          } else if (state.state == ResultStateDetailRecipe.HasData) {
+          } else if (state.state == ResultStateDetailRecipe.hasData) {
             final resep = state.result.results;
             return Stack(
               children: [
@@ -39,21 +53,21 @@ class _RecipeDetailState extends State<RecipeDetail> {
                 ),
                 ListView(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 250,
                     ),
                     Container(
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.vertical(
+                          borderRadius: const BorderRadius.vertical(
                             top: Radius.circular(20),
                           ),
                           color: whiteColor),
                       child: Column(
                         children: [
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
                           Padding(
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                               horizontal: 20,
                             ),
                             child: Row(
@@ -71,13 +85,13 @@ class _RecipeDetailState extends State<RecipeDetail> {
                                           fontWeight: bold,
                                         ),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 20,
                                       ),
                                       Row(
                                         children: [
                                           Image.asset('assets/chef.png'),
-                                          SizedBox(width: 10),
+                                          const SizedBox(width: 10),
                                           Text(
                                             resep.author.user,
                                             style: blackTextStyle.copyWith(
@@ -86,21 +100,21 @@ class _RecipeDetailState extends State<RecipeDetail> {
                                           ),
                                         ],
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 5,
                                       ),
                                       Row(
                                         children: [
-                                          Icon(
+                                          const Icon(
                                             Icons.date_range_rounded,
                                           ),
-                                          SizedBox(width: 6),
+                                          const SizedBox(width: 6),
                                           Text(
                                             resep.author.datePublished,
                                           ),
                                         ],
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 10,
                                       ),
                                       ClipRRect(
@@ -120,7 +134,7 @@ class _RecipeDetailState extends State<RecipeDetail> {
                                                   children: [
                                                     Image.asset(
                                                         'assets/service.png'),
-                                                    SizedBox(height: 5),
+                                                    const SizedBox(height: 5),
                                                     Text(
                                                       resep.dificulty,
                                                       style: whiteTextStyle
@@ -137,7 +151,7 @@ class _RecipeDetailState extends State<RecipeDetail> {
                                                       Icons.timer_rounded,
                                                       color: whiteColor,
                                                     ),
-                                                    SizedBox(height: 5),
+                                                    const SizedBox(height: 5),
                                                     Text(
                                                       resep.times,
                                                       style: whiteTextStyle
@@ -154,7 +168,7 @@ class _RecipeDetailState extends State<RecipeDetail> {
                                                       'assets/soup_kitchen.png',
                                                       color: whiteColor,
                                                     ),
-                                                    SizedBox(height: 5),
+                                                    const SizedBox(height: 5),
                                                     Text(
                                                       resep.servings,
                                                       style: whiteTextStyle
@@ -170,7 +184,7 @@ class _RecipeDetailState extends State<RecipeDetail> {
                                           ),
                                         ),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 20,
                                       ),
                                       Text(
@@ -180,7 +194,7 @@ class _RecipeDetailState extends State<RecipeDetail> {
                                           fontSize: 14,
                                         ),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 12,
                                       ),
                                       Text(
@@ -190,7 +204,7 @@ class _RecipeDetailState extends State<RecipeDetail> {
                                           fontSize: 13,
                                         ),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 30,
                                       ),
                                       Text(
@@ -200,131 +214,10 @@ class _RecipeDetailState extends State<RecipeDetail> {
                                           fontSize: 14,
                                         ),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 12,
                                       ),
-                                      /*ClipRRect(
-                                        borderRadius: BorderRadius.circular(30),
-                                        child: Container(
-                                          width: 374,
-                                          height: 220,
-                                          decoration: BoxDecoration(
-                                            color: whiteColor,
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                            boxShadow: [
-                                              BoxShadow(
-                                                color: Colors.black
-                                                    .withOpacity(1.0),
-                                                blurRadius: 23,
-                                                spreadRadius: 5,
-                                                offset: Offset(
-                                                    0, 5), // Shadow position
-                                              ),
-                                            ],
-                                          ),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(20),
-                                            *//*child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceEvenly,
-                                              children: [
-                                                Column(
-                                                  children: [
-                                                    Image.asset(
-                                                        'assets/bango.png'),
-                                                    SizedBox(height: 5),
-                                                    Text(
-                                                      'Bango Kecap Manis',
-                                                      style: blackTextStyle
-                                                          .copyWith(
-                                                        fontWeight: bold,
-                                                        fontSize: 12,
-                                                      ),
-                                                    ),
-                                                    ElevatedButton(
-                                                      child: Text(
-                                                        'Beli Online',
-                                                        style: whiteTextStyle
-                                                            .copyWith(
-                                                          fontWeight: bold,
-                                                          fontSize: 9,
-                                                        ),
-                                                      ),
-                                                      onPressed: () {},
-                                                      style: ButtonStyle(
-                                                        backgroundColor:
-                                                            MaterialStateProperty
-                                                                .all<Color>(
-                                                                    orangeColor),
-                                                        shape: MaterialStateProperty
-                                                            .all<
-                                                                RoundedRectangleBorder>(
-                                                          RoundedRectangleBorder(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        20.0),
-                                                            side: BorderSide(
-                                                                color:
-                                                                    orangeColor),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Column(
-                                                  children: [
-                                                    Image.asset(
-                                                        'assets/royco.png'),
-                                                    SizedBox(height: 5),
-                                                    Text(
-                                                      'Royco Kaldu Ayam',
-                                                      style: blackTextStyle
-                                                          .copyWith(
-                                                        fontWeight: bold,
-                                                        fontSize: 12,
-                                                      ),
-                                                    ),
-                                                    ElevatedButton(
-                                                      child: Text(
-                                                        'Beli Online',
-                                                        style: whiteTextStyle
-                                                            .copyWith(
-                                                          fontWeight: bold,
-                                                          fontSize: 9,
-                                                        ),
-                                                      ),
-                                                      onPressed: () {},
-                                                      style: ButtonStyle(
-                                                        backgroundColor:
-                                                            MaterialStateProperty
-                                                                .all<Color>(
-                                                                    orangeColor),
-                                                        shape: MaterialStateProperty
-                                                            .all<
-                                                                RoundedRectangleBorder>(
-                                                          RoundedRectangleBorder(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        20.0),
-                                                            side: BorderSide(
-                                                                color:
-                                                                    orangeColor),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),*//*
-                                          ),
-                                        ),
-                                      ),*/
-                                      SizedBox(height: 10),
+                                      const SizedBox(height: 10),
                                       Text(
                                         resep.ingredient.join('\n'),
                                         style: blackTextStyle.copyWith(
@@ -332,7 +225,33 @@ class _RecipeDetailState extends State<RecipeDetail> {
                                           fontSize: 13,
                                         ),
                                       ),
-                                      SizedBox(height: 30),
+                                      Center(
+                                        child: ElevatedButton(
+                                          child: Text(
+                                            'Beli bahan di sini',
+                                            style: whiteTextStyle.copyWith(
+                                              fontWeight: bold,
+                                              fontSize: 9,
+                                            ),
+                                          ),
+                                          onPressed: _launchURL,
+                                          style: ButtonStyle(
+                                            backgroundColor:
+                                                MaterialStateProperty.all<
+                                                    Color>(orangeColor),
+                                            shape: MaterialStateProperty.all<
+                                                RoundedRectangleBorder>(
+                                              RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(20.0),
+                                                side: BorderSide(
+                                                    color: orangeColor),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(height: 30),
                                       Text(
                                         'Langkah - langkah',
                                         style: blackTextStyle.copyWith(
@@ -340,7 +259,7 @@ class _RecipeDetailState extends State<RecipeDetail> {
                                           fontSize: 14,
                                         ),
                                       ),
-                                      SizedBox(height: 10),
+                                      const SizedBox(height: 10),
                                       Text(
                                         resep.step.join('\n'),
                                         style: blackTextStyle.copyWith(
@@ -384,16 +303,16 @@ class _RecipeDetailState extends State<RecipeDetail> {
                 ),
               ],
             );
-          } else if (state.state == ResultStateDetailRecipe.NoData) {
+          } else if (state.state == ResultStateDetailRecipe.noData) {
             return Center(
               child: Text(state.message),
             );
-          } else if (state.state == ResultStateDetailRecipe.Error) {
+          } else if (state.state == ResultStateDetailRecipe.error) {
             return Center(
               child: Text(state.message),
             );
-          } else if (state.state == ResultStateDetailRecipe.NoConnection) {
-            return Container(
+          } else if (state.state == ResultStateDetailRecipe.noConnection) {
+            return SizedBox(
               width: MediaQuery.of(context).size.width,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -402,7 +321,7 @@ class _RecipeDetailState extends State<RecipeDetail> {
                   Text(
                     state.message,
                     style:
-                    const TextStyle(fontSize: 20, color: Colors.blueGrey),
+                        const TextStyle(fontSize: 20, color: Colors.blueGrey),
                   ),
                   const SizedBox(height: 25),
                   ElevatedButton(
@@ -427,7 +346,6 @@ class _RecipeDetailState extends State<RecipeDetail> {
 
 class FavoriteButton extends StatefulWidget {
   const FavoriteButton({Key? key}) : super(key: key);
-
 
   @override
   _FavoriteButtonState createState() => _FavoriteButtonState();
@@ -455,4 +373,3 @@ class _FavoriteButtonState extends State<FavoriteButton> {
     );
   }
 }
-

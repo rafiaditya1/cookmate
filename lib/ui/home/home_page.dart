@@ -1,5 +1,4 @@
 import 'package:cookmate/provider/category_list_provider.dart';
-import 'package:cookmate/provider/recipe_provider.dart';
 import 'package:cookmate/provider/recommend_list_provider.dart';
 import 'package:cookmate/theme/theme.dart';
 import 'package:cookmate/ui/detail/category_detail.dart';
@@ -66,7 +65,7 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     // Image.asset('assets/account_circle.png'),
                     Text(
-                      'Halo, \n${name}',
+                      'Halo, \n$name',
                       style: blackTextStyle.copyWith(
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
@@ -97,13 +96,10 @@ class _HomePageState extends State<HomePage> {
                 ),
                 const SizedBox(height: 16),
                 Consumer<CategoryListProvider>(builder: (context, state, _) {
-                  if (state.state == ResultStateCategory.Loading) {
-                    return const Center(
-                      child: CircularProgressIndicator()
-                    );
-                  }
-                  else if(state.state == ResultStateCategory.HasData){
-                    return Container(
+                  if (state.state == ResultStateCategory.loading) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (state.state == ResultStateCategory.hasData) {
+                    return SizedBox(
                       height: 40,
                       child: ListView.builder(
                         shrinkWrap: true,
@@ -124,16 +120,16 @@ class _HomePageState extends State<HomePage> {
                         },
                       ),
                     );
-                  } else if (state.state == ResultStateCategory.NoData) {
+                  } else if (state.state == ResultStateCategory.noData) {
                     return Center(
                       child: Text(state.message),
                     );
-                  } else if (state.state == ResultStateCategory.Error) {
+                  } else if (state.state == ResultStateCategory.error) {
                     return Center(
                       child: Text(state.message),
                     );
-                  } else if (state.state == ResultStateCategory.NoConnection) {
-                    return Container(
+                  } else if (state.state == ResultStateCategory.noConnection) {
+                    return SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -141,8 +137,8 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           Text(
                             state.message,
-                            style:
-                                const TextStyle(fontSize: 20, color: Colors.blueGrey),
+                            style: const TextStyle(
+                                fontSize: 20, color: Colors.blueGrey),
                           ),
                           const SizedBox(height: 25),
                           ElevatedButton(
@@ -170,27 +166,25 @@ class _HomePageState extends State<HomePage> {
                 ),
                 const SizedBox(height: 16),
                 Consumer<RecommendListProvider>(builder: (context, state, _) {
-                  if (state.state == ResultStateRecommend.Loading) {
-                    return const Center(
-                      child: CircularProgressIndicator()
-                    );
-                  }else if(state.state == ResultStateRecommend.HasData){
+                  if (state.state == ResultStateRecommend.loading) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (state.state == ResultStateRecommend.hasData) {
                     return ListView.builder(
                       // scrollDirection: Axis.vertical,
                       shrinkWrap: true,
-                      itemCount: state.result.results.length,
+                      itemCount: state.result.results.length - 7,
                       itemBuilder: (context, index) {
                         return RecommendCard(
                           resep: state.result.results[index],
                         );
                       },
                     );
-                  } else if (state.state == ResultStateRecommend.NoData) {
+                  } else if (state.state == ResultStateRecommend.noData) {
                     return Center(
                       child: Text(state.message),
                     );
-                  } else if (state.state == ResultStateRecommend.NoConnection) {
-                    return Container(
+                  } else if (state.state == ResultStateRecommend.noConnection) {
+                    return SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -198,8 +192,8 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           Text(
                             state.message,
-                            style:
-                                const TextStyle(fontSize: 20, color: Colors.blueGrey),
+                            style: const TextStyle(
+                                fontSize: 20, color: Colors.blueGrey),
                           ),
                           const SizedBox(height: 25),
                           ElevatedButton(
@@ -217,37 +211,6 @@ class _HomePageState extends State<HomePage> {
                     );
                   }
                 }),
-                /*Column(
-                children: const [
-                  RecommendCard(),
-                  RecommendCard(),
-                  RecommendCard(),
-                  RecommendCard(),
-                  RecommendCard(),
-                ],
-              )*/
-                // Container(
-                //   height: 200,
-                //   child: ListView(
-                //     scrollDirection: Axis.horizontal,
-                //     children: <Widget>[
-                //       Container(
-                //         width: 300,
-                //         height: 200,
-                //         child: Container(
-                //           child: ClipRRect(
-                //             borderRadius: BorderRadius.circular(10),
-                //             child: Image.asset(
-                //               'assets/food.jpeg',
-                //               height: 300,
-                //               width: 200,
-                //             ),
-                //           ),
-                //         ),
-                //       )
-                //     ],
-                //   ),
-                // )
               ],
             ),
           ),

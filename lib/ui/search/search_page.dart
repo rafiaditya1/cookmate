@@ -1,10 +1,8 @@
-
 import 'package:cookmate/provider/recipe_provider.dart';
 import 'package:cookmate/theme/theme.dart';
 import 'package:cookmate/ui/search/recipe_item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 
 class SearchPage extends StatefulWidget {
   static const routeName = '/search_page';
@@ -36,10 +34,6 @@ class _SearchPageState extends State<SearchPage> {
                     itemBuilder: (context, index) {
                       return RecipeItem(
                         resep: state.result.results[index],
-                        // resep: state.result.results[index],
-                        // thumb: state.result.results[index],
-                        // times: state.result.results[index],
-                        // portion: state.result.results[index],
                       );
                     },
                     padding: const EdgeInsets.only(top: kToolbarHeight + 24),

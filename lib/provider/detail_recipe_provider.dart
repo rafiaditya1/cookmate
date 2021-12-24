@@ -8,7 +8,7 @@ import 'package:cookmate/data/api/api_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
-enum ResultStateDetailRecipe { Loading, NoData, HasData, Error, NoConnection }
+enum ResultStateDetailRecipe { loading, noData, hasData, error, noConnection }
 
 class DetailRecipeProvider extends ChangeNotifier {
   DetailRecipeProvider(this.context, {required this.id}) {
@@ -30,28 +30,28 @@ class DetailRecipeProvider extends ChangeNotifier {
 
   Future<dynamic> _fetchDetailRecipelData() async {
     try {
-      _state = ResultStateDetailRecipe.Loading;
+      _state = ResultStateDetailRecipe.loading;
       notifyListeners();
       final connection = await connectionService.connectionService(context);
       if (!connection.connected) {
-        _state = ResultStateDetailRecipe.NoConnection;
+        _state = ResultStateDetailRecipe.noConnection;
         notifyListeners();
         return _message = connection.message;
       }
       final recipe = await getRecipeDetail();
       if (recipe.results == null) {
-        _state = ResultStateDetailRecipe.NoData;
+        _state = ResultStateDetailRecipe.noData;
         notifyListeners();
         return _message = 'No Data';
       } else {
-        _state = ResultStateDetailRecipe.HasData;
+        _state = ResultStateDetailRecipe.hasData;
         notifyListeners();
         return _detailRecipeResult = recipe;
       }
     } catch (e) {
-      _state = ResultStateDetailRecipe.Error;
+      _state = ResultStateDetailRecipe.error;
       notifyListeners();
-      return _message = 'Error: $e';
+      return _message = 'error: $e';
     }
   }
 
