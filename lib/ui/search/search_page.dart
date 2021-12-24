@@ -1,12 +1,10 @@
-import 'package:cookmate/data/model/detail_recipe.dart';
+
 import 'package:cookmate/provider/recipe_provider.dart';
 import 'package:cookmate/theme/theme.dart';
-import 'package:cookmate/ui/detail/recipe_detail.dart';
 import 'package:cookmate/ui/search/recipe_item.dart';
-// import 'package:cookmate/ui/widget/recommend_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-// import 'package:cookmate/provider/recommend_list_provider.dart';
+
 
 class SearchPage extends StatefulWidget {
   static const routeName = '/search_page';
@@ -36,19 +34,12 @@ class _SearchPageState extends State<SearchPage> {
                   ListView.builder(
                     itemCount: state.result.results.length,
                     itemBuilder: (context, index) {
-                      final response = state.result.results[index];
                       return RecipeItem(
-                        title: state.result.results[index],
-                        thumb: state.result.results[index],
-                        times: state.result.results[index],
-                        portion: state.result.results[index],
-                        onPressed: () {
-                          Navigator.pushNamed(
-                            context,
-                            RecipeDetail.routeName,
-                            arguments: response.key,
-                          );
-                        },
+                        resep: state.result.results[index],
+                        // resep: state.result.results[index],
+                        // thumb: state.result.results[index],
+                        // times: state.result.results[index],
+                        // portion: state.result.results[index],
                       );
                     },
                     padding: const EdgeInsets.only(top: kToolbarHeight + 24),

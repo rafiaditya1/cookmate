@@ -1,7 +1,6 @@
-import 'package:cookmate/data/model/detail_recipe.dart';
+import 'package:cookmate/data/model/search_recipe.dart';
 import 'package:cookmate/provider/detail_recipe_provider.dart';
 import 'package:cookmate/theme/theme.dart';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -30,7 +29,6 @@ class _RecipeDetailState extends State<RecipeDetail> {
             );
           } else if (state.state == ResultStateDetailRecipe.HasData) {
             final resep = state.result.results;
-            NeedItem item;
             return Stack(
               children: [
                 Image.network(
@@ -38,24 +36,6 @@ class _RecipeDetailState extends State<RecipeDetail> {
                   width: MediaQuery.of(context).size.width,
                   height: 350,
                   fit: BoxFit.cover,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 20,
-                  ),
-                  child: Row(
-                    children: [
-                      IconButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        icon: Icon(
-                          Icons.arrow_back_ios_new_outlined,
-                        ),
-                      )
-                    ],
-                  ),
                 ),
                 ListView(
                   children: [
@@ -99,7 +79,7 @@ class _RecipeDetailState extends State<RecipeDetail> {
                                           Image.asset('assets/chef.png'),
                                           SizedBox(width: 10),
                                           Text(
-                                            'Maddie',
+                                            resep.author.user,
                                             style: blackTextStyle.copyWith(
                                                 fontSize: 13,
                                                 fontWeight: medium),
@@ -116,7 +96,7 @@ class _RecipeDetailState extends State<RecipeDetail> {
                                           ),
                                           SizedBox(width: 6),
                                           Text(
-                                            'Mei 17, 2020',
+                                            resep.author.datePublished,
                                           ),
                                         ],
                                       ),
@@ -142,7 +122,7 @@ class _RecipeDetailState extends State<RecipeDetail> {
                                                         'assets/service.png'),
                                                     SizedBox(height: 5),
                                                     Text(
-                                                      resep.servings,
+                                                      resep.dificulty,
                                                       style: whiteTextStyle
                                                           .copyWith(
                                                         fontWeight: light,
@@ -223,7 +203,7 @@ class _RecipeDetailState extends State<RecipeDetail> {
                                       SizedBox(
                                         height: 12,
                                       ),
-                                      ClipRRect(
+                                      /*ClipRRect(
                                         borderRadius: BorderRadius.circular(30),
                                         child: Container(
                                           width: 374,
@@ -245,7 +225,7 @@ class _RecipeDetailState extends State<RecipeDetail> {
                                           ),
                                           child: Padding(
                                             padding: const EdgeInsets.all(20),
-                                            child: Row(
+                                            *//*child: Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.spaceEvenly,
                                               children: [
@@ -340,10 +320,10 @@ class _RecipeDetailState extends State<RecipeDetail> {
                                                   ],
                                                 ),
                                               ],
-                                            ),
+                                            ),*//*
                                           ),
                                         ),
-                                      ),
+                                      ),*/
                                       SizedBox(height: 10),
                                       Text(
                                         resep.ingredient.join('\n'),
@@ -378,11 +358,64 @@ class _RecipeDetailState extends State<RecipeDetail> {
                       ),
                     )
                   ],
-                )
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 24,
+                    vertical: 30,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CircleAvatar(
+                        backgroundColor: Colors.white,
+                        child: IconButton(
+                            icon: const Icon(
+                              Icons.arrow_back,
+                              color: Colors.grey,
+                            ),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            }),
+                      ),
+                      const FavoriteButton(),
+                    ],
+                  ),
+                ),
               ],
             );
-          } else {
+          } else if (state.state == ResultStateDetailRecipe.NoData) {
             return Center(
+              child: Text(state.message),
+            );
+          } else if (state.state == ResultStateDetailRecipe.Error) {
+            return Center(
+              child: Text(state.message),
+            );
+          } else if (state.state == ResultStateDetailRecipe.NoConnection) {
+            return Container(
+              width: MediaQuery.of(context).size.width,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    state.message,
+                    style:
+                    const TextStyle(fontSize: 20, color: Colors.blueGrey),
+                  ),
+                  const SizedBox(height: 25),
+                  ElevatedButton(
+                    child: const Text('Refresh'),
+                    onPressed: () {
+                      state.refresh();
+                    },
+                  )
+                ],
+              ),
+            );
+          } else {
+            return const Center(
               child: Text(''),
             );
           }
@@ -391,3 +424,35 @@ class _RecipeDetailState extends State<RecipeDetail> {
     );
   }
 }
+
+class FavoriteButton extends StatefulWidget {
+  const FavoriteButton({Key? key}) : super(key: key);
+
+
+  @override
+  _FavoriteButtonState createState() => _FavoriteButtonState();
+}
+
+class _FavoriteButtonState extends State<FavoriteButton> {
+  bool isFavorite = false;
+  late final Result resep;
+
+  @override
+  Widget build(BuildContext context) {
+    return CircleAvatar(
+      backgroundColor: Colors.white,
+      child: IconButton(
+        icon: Icon(
+          isFavorite ? Icons.favorite : Icons.favorite_border,
+          color: Colors.red,
+        ),
+        onPressed: () {
+          setState(() {
+            isFavorite = !isFavorite;
+          });
+        },
+      ),
+    );
+  }
+}
+

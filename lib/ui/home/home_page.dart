@@ -1,8 +1,8 @@
 import 'package:cookmate/provider/category_list_provider.dart';
+import 'package:cookmate/provider/recipe_provider.dart';
 import 'package:cookmate/provider/recommend_list_provider.dart';
 import 'package:cookmate/theme/theme.dart';
 import 'package:cookmate/ui/detail/category_detail.dart';
-import 'package:cookmate/ui/detail/recipe_detail.dart';
 import 'package:cookmate/ui/search/search_page.dart';
 import 'package:cookmate/ui/widget/category_card.dart';
 import 'package:cookmate/ui/widget/recommend_card.dart';
@@ -21,7 +21,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _currentIndex = 0;
   final String name;
   _HomePageState({required this.name});
 
@@ -59,6 +58,7 @@ class _HomePageState extends State<HomePage> {
           child: Padding(
             padding: const EdgeInsets.only(left: 16, top: 30),
             child: ListView(
+              scrollDirection: Axis.vertical,
               // crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Column(
@@ -97,7 +97,12 @@ class _HomePageState extends State<HomePage> {
                 ),
                 const SizedBox(height: 16),
                 Consumer<CategoryListProvider>(builder: (context, state, _) {
-                  if (state.state == ResultState.HasData) {
+                  if (state.state == ResultStateCategory.Loading) {
+                    return const Center(
+                      child: CircularProgressIndicator()
+                    );
+                  }
+                  else if(state.state == ResultStateCategory.HasData){
                     return Container(
                       height: 40,
                       child: ListView.builder(
@@ -119,15 +124,15 @@ class _HomePageState extends State<HomePage> {
                         },
                       ),
                     );
-                  } else if (state.state == ResultState.NoData) {
+                  } else if (state.state == ResultStateCategory.NoData) {
                     return Center(
                       child: Text(state.message),
                     );
-                  } else if (state.state == ResultState.Error) {
+                  } else if (state.state == ResultStateCategory.Error) {
                     return Center(
                       child: Text(state.message),
                     );
-                  } else if (state.state == ResultState.NoConnection) {
+                  } else if (state.state == ResultStateCategory.NoConnection) {
                     return Container(
                       width: MediaQuery.of(context).size.width,
                       child: Column(
@@ -137,14 +142,20 @@ class _HomePageState extends State<HomePage> {
                           Text(
                             state.message,
                             style:
-                                TextStyle(fontSize: 20, color: Colors.blueGrey),
+                                const TextStyle(fontSize: 20, color: Colors.blueGrey),
                           ),
-                          SizedBox(height: 25),
+                          const SizedBox(height: 25),
+                          ElevatedButton(
+                            child: const Text('Refresh'),
+                            onPressed: () {
+                              state.refresh();
+                            },
+                          )
                         ],
                       ),
                     );
                   } else {
-                    return Center(
+                    return const Center(
                       child: Text(''),
                     );
                   }
@@ -159,33 +170,22 @@ class _HomePageState extends State<HomePage> {
                 ),
                 const SizedBox(height: 16),
                 Consumer<RecommendListProvider>(builder: (context, state, _) {
-                  if (state.state == ResultStateRecommend.HasData) {
+                  if (state.state == ResultStateRecommend.Loading) {
+                    return const Center(
+                      child: CircularProgressIndicator()
+                    );
+                  }else if(state.state == ResultStateRecommend.HasData){
                     return ListView.builder(
                       // scrollDirection: Axis.vertical,
                       shrinkWrap: true,
                       itemCount: state.result.results.length,
                       itemBuilder: (context, index) {
-                        final response = state.result.results[index];
                         return RecommendCard(
-                          title: state.result.results[index],
-                          thumb: state.result.results[index],
-                          times: state.result.results[index],
-                          portion: state.result.results[index],
-                          onPressed: () {
-                            Navigator.pushNamed(
-                              context,
-                              RecipeDetail.routeName,
-                              arguments: response.key,
-                            );
-                          },
+                          resep: state.result.results[index],
                         );
                       },
                     );
                   } else if (state.state == ResultStateRecommend.NoData) {
-                    return Center(
-                      child: Text(state.message),
-                    );
-                  } else if (state.state == ResultStateRecommend.Error) {
                     return Center(
                       child: Text(state.message),
                     );
@@ -199,14 +199,20 @@ class _HomePageState extends State<HomePage> {
                           Text(
                             state.message,
                             style:
-                                TextStyle(fontSize: 20, color: Colors.blueGrey),
+                                const TextStyle(fontSize: 20, color: Colors.blueGrey),
                           ),
-                          SizedBox(height: 25),
+                          const SizedBox(height: 25),
+                          ElevatedButton(
+                            child: const Text('Refresh'),
+                            onPressed: () {
+                              state.refresh();
+                            },
+                          )
                         ],
                       ),
                     );
                   } else {
-                    return Center(
+                    return const Center(
                       child: Text(''),
                     );
                   }

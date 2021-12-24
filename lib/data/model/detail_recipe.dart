@@ -42,6 +42,7 @@ class Results {
     required this.servings,
     required this.times,
     required this.dificulty,
+    required this.author,
     required this.desc,
     required this.needItem,
     required this.ingredient,
@@ -53,6 +54,7 @@ class Results {
   final String servings;
   final String times;
   final String dificulty;
+  final Author author;
   final String desc;
   final List<NeedItem> needItem;
   final List<String> ingredient;
@@ -65,6 +67,7 @@ class Results {
         servings: json["servings"],
         times: json["times"],
         dificulty: json["dificulty"],
+        author: Author.fromJson(json["author"]),
         desc: json["desc"],
         needItem: List<NeedItem>.from(
             json["needItem"].map((x) => NeedItem.fromJson(x))),
@@ -83,6 +86,26 @@ class Results {
         "ingredient": List<dynamic>.from(ingredient.map((x) => x)),
         "step": List<dynamic>.from(step.map((x) => x)),
       };
+}
+
+class Author {
+  Author({
+    required this.user,
+    required this.datePublished,
+  });
+
+  final String user;
+  final String datePublished;
+
+  factory Author.fromJson(Map<String, dynamic> json) => Author(
+    user: json["user"],
+    datePublished: json["datePublished"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "user": user,
+    "datePublished": datePublished,
+  };
 }
 
 class NeedItem {

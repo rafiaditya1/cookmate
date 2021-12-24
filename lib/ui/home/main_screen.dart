@@ -40,13 +40,14 @@ class _MainScreenState extends State<MainScreen> {
   List<BottomNavigationBarItem> _bottomNavBarItems = [
     BottomNavigationBarItem(
       icon: Icon(Icons.home),
-      // label: 'Home',
+      label: '',
     ),
     // BottomNavigationBarItem(
     //   icon: Icon(Icons.search),
     // ),
     BottomNavigationBarItem(
       icon: Icon(Icons.favorite_outline_rounded),
+      label: '',
     ),
   ];
 

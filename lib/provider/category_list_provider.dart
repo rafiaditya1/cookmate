@@ -10,7 +10,7 @@ import 'package:cookmate/data/model/category.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
-enum ResultState { Loading, NoData, HasData, Error, NoConnection }
+enum ResultStateCategory { Loading, NoData, HasData, Error, NoConnection }
 
 class CategoryListProvider extends ChangeNotifier {
   late final BuildContext context;
@@ -19,14 +19,14 @@ class CategoryListProvider extends ChangeNotifier {
 
   String _message = '';
   String _query = '';
-  late ResultState _state;
+  late ResultStateCategory _state;
   late CategoryResult _categoryResult;
 
   String get message => _message;
 
   String get query => _query;
 
-  ResultState get state => _state;
+  ResultStateCategory get state => _state;
 
   CategoryResult get result => _categoryResult;
 
@@ -48,26 +48,26 @@ class CategoryListProvider extends ChangeNotifier {
 
   Future<dynamic> _fetchCategoryData() async {
     try {
-      _state = ResultState.Loading;
+      _state = ResultStateCategory.Loading;
       notifyListeners();
       final connection = await connectionService.connectionService(context);
       if (!connection.connected) {
-        _state = ResultState.NoConnection;
+        _state = ResultStateCategory.NoConnection;
         notifyListeners();
         return _message = connection.message;
       }
       final category = await getCategoryData();
       if (category.results.isEmpty) {
-        _state = ResultState.NoData;
+        _state = ResultStateCategory.NoData;
         notifyListeners();
         return _message = 'No Data';
       } else {
-        _state = ResultState.HasData;
+        _state = ResultStateCategory.HasData;
         notifyListeners();
         return _categoryResult = category;
       }
     } catch (e) {
-      _state = ResultState.Error;
+      _state = ResultStateCategory.Error;
       notifyListeners();
       return _message = 'Error: $e';
     }
