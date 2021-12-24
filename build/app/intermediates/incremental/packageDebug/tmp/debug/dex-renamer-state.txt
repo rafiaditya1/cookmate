@@ -1,0 +1,4 @@
+#Fri Dec 24 19:57:49 WIB 2021
+base.0=/Users/user/Documents/GitHub/cookmate/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
