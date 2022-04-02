@@ -19,6 +19,23 @@ Bagi kami, ini adalah kolaborasi pertama yang kami kerjakan, dan kami benar-bena
 
 ‎Kami memanfaatkan GitHub Issues sebagai platform manajemen proyek kami. Kami mulai dengan mencantumkan beberapa fitur yang ingin kami bangun dan kembangkan secara bertahap saat kami bekerja paralel dengan aplikasi front-end dan back-end.‎
 
+## Screen Capture
+
+#### Search Page:
+![Landing Page](./ss1.png)
+
+#### Login Page:
+![Login Page](./ss2.png)
+
+#### Home Page:
+![Home Page](./ss3.png)
+
+#### Search Page:
+![Category Page](./ss4.png)
+
+#### Search Page:
+![Detail Page](./ss5.png)
+
 
 ## Contributors ✨
 
