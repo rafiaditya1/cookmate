@@ -22,19 +22,19 @@ Bagi kami, ini adalah kolaborasi pertama yang kami kerjakan, dan kami benar-bena
 ## Screen Capture
 
 #### Search Page:
-![Landing Page](./ss1.png)
+![Landing Page](./ss1.JPG)
 
 #### Login Page:
-![Login Page](./ss2.png)
+![Login Page](./ss2.JPG)
 
 #### Home Page:
-![Home Page](./ss3.png)
+![Home Page](./ss3.JPG)
 
 #### Search Page:
-![Category Page](./ss4.png)
+![Category Page](./ss4.JPG)
 
 #### Search Page:
-![Detail Page](./ss5.png)
+![Detail Page](./ss5.JPG)
 
 
 ## Contributors ✨
